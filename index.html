@@ -797,8 +797,12 @@ $('detail-close').addEventListener('click',closeDetail);
 $('detail-backdrop').addEventListener('click',e=>{if(e.target===$('detail-backdrop'))closeDetail();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDetail();});
 function destinationFor(place){
- if(place.approx&&cleanAddress(place))return `${place.name}, ${cleanAddress(place)}`;
- return `${place.lat},${place.lon}`;
+ const address=cleanAddress(place);
+ return [
+  place.name,
+  address,
+  'Nha Trang, Khánh Hòa, Vietnam'
+ ].filter(Boolean).join(', ');
 }
 $('directions-button').addEventListener('click',()=>{
  if(!activePlace)return;
